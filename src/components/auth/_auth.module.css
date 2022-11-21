@@ -1,0 +1,75 @@
+#authBlock article {
+  background: #fff;
+  height: 80vh;
+  display: flex;
+  width: 90%;
+  margin: 20px auto;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.authLeft {
+  flex-basis: 40%;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  height: 75vh;
+  flex-direction: column;
+  padding: 30px;
+  border-right: 2px solid #efefef;
+}
+
+.authRight {
+  flex-basis: 60%;
+  background-color: #fff;
+  padding: 60px 40px;
+}
+.authRight form {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+}
+.authRight form div {
+  flex-basis: 47%;
+}
+.authRight form label {
+  width: 100%;
+  color: #9c27b0;
+  padding: 4px 4px;
+  display: block;
+  font-weight: bold;
+  font-size: 15px;
+}
+.authRight form input {
+  width: 100%;
+  display: block;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin: 10px 0;
+}
+.authRight form > div:last-child {
+  flex-basis: 100% !important;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.authRight form button {
+  margin: 10px 0;
+  border-radius: 5px;
+  color: #fff;
+  padding: 15px 40px;
+  cursor: pointer;
+  background-color: #6739b7;
+  color: #fff;
+  border: 1px solid #6739b7;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+.authRight form button:hover {
+  background-color: transparent;
+  color: #6739b7;
+  border: 1px solid #6739b7;
+}
