@@ -55,3 +55,30 @@
   color: #fff !important;
   border: 1px solid #6739b7;
 }
+
+.menuBlock ul li button {
+  background: #fff;
+  padding: 8px 20px;
+  border-radius: 4px;
+  font-size: 16px;
+  border: 1px solid purple;
+  cursor: pointer;
+}
+
+.avatarURL {
+  width: auto !important;
+  border: none !important;
+  padding: 0 !important;
+  display: inline-block !important;
+}
+.avatarURL img {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  margin: 4px 10px;
+}
+
+.avatarURL:hover {
+  background-color: transparent !important;
+  border: none !important;
+}

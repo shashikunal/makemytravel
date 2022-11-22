@@ -4,7 +4,12 @@ import { useNavigate } from "react-router-dom";
 import Auth_Image from "./auth_image.webp";
 import { toast } from "react-toastify";
 import { auth } from "../../apis/firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import md5 from "md5";
+import {
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+  updateProfile,
+} from "firebase/auth";
 
 const Register = () => {
   let navigate = useNavigate();
@@ -28,12 +33,22 @@ const Register = () => {
         toast.error("Password is not matched");
       } else {
         setState({ isLoading: true });
-        await createUserWithEmailAndPassword(auth, email, password);
+        let userData = await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+        sendEmailVerification(userData.user);
+        let message = `Email verification  has been sent to ${email} address please verify...`;
+        updateProfile(userData.user, {
+          displayName: username,
+          photoURL: `https://www.gravatar.com/avatar/${md5(email)}?q=identicon`,
+        });
+        toast.success(message);
         navigate("/login");
-        toast.success(`successfully ${username} created`);
       }
     } catch (error) {
-      console.error(error);
+      toast.error(error.code);
     }
     //resetting form fields
     setState({
