@@ -10,11 +10,15 @@ import "react-toastify/dist/ReactToastify.css";
 import AuthProvider from "./apis/AuthContextApi";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import PublicRoute from "./routes/PublicRoute";
+import Profile from "./components/profile/Profile";
+import UploadPhoto from "./components/profile/UploadPhoto";
+import ProfileDefault from "./components/profile/ProfileDefault";
 const App = () => {
   return (
     <AuthProvider>
       <Router>
         <Navbar />
+
         <ToastContainer theme="dark" />
         <Routes>
           <Route
@@ -25,6 +29,31 @@ const App = () => {
               </ProtectedRoute>
             }
           />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          >
+            <Route
+              index
+              element={
+                <ProtectedRoute>
+                  <ProfileDefault />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="upload-profile-photo"
+              element={
+                <ProtectedRoute>
+                  <UploadPhoto />
+                </ProtectedRoute>
+              }
+            />
+          </Route>
           <Route
             path="/login"
             element={

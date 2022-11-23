@@ -1,5 +1,5 @@
 import React, { Fragment, useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Styles from "./_navbar.module.css";
 import { AuthContext } from "./../../apis/AuthContextApi";
 
@@ -9,9 +9,9 @@ const Menu = () => {
     return (
       <Fragment>
         <li>
-          <NavLink to="/profile" className={Styles.avatarURL}>
+          <Link to="/profile" className={Styles.avatarURL}>
             <img src={authUser.photoURL} alt={authUser.username} />
-          </NavLink>
+          </Link>
         </li>
         <li>
           <button onClick={() => Logout()}>Logout</button>
