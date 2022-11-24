@@ -186,3 +186,22 @@
   display: inline-block;
   padding: 10px 0;
 }
+
+.phoneAuth {
+  padding: 10px;
+  background: #673ab7;
+  color: #fff;
+  text-transform: capitalize;
+  text-decoration: none;
+  width: auto;
+  display: inline-block;
+  text-align: center;
+  margin: 11px auto;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.phoneAuth:hover {
+  background-color: #33067f;
+  color: #fff;
+}

@@ -15,7 +15,10 @@ const AuthProvider = ({ children }) => {
   };
   useEffect(() => {
     return onAuthStateChanged(auth, userInfo => {
-      if (userInfo.emailVerified === true && userInfo.isAnonymous === false) {
+      if (
+        (userInfo.emailVerified === true && userInfo.isAnonymous === false) ||
+        userInfo.getIdTokenResult
+      ) {
         console.log(userInfo);
         isSetLoading(true);
         setAuthUser(userInfo);

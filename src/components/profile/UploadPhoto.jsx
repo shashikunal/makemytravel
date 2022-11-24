@@ -97,7 +97,7 @@ const UploadPhoto = () => {
             />
           </div>
           <div className="form-group">
-            <button>upload</button>
+            <button>{isLoading ? "loading ..." : "upload"}</button>
           </div>
         </form>
       </article>

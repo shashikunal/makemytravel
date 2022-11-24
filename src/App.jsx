@@ -13,6 +13,9 @@ import PublicRoute from "./routes/PublicRoute";
 import Profile from "./components/profile/Profile";
 import UploadPhoto from "./components/profile/UploadPhoto";
 import ProfileDefault from "./components/profile/ProfileDefault";
+import ResetPassword from "./components/auth/ResetPassword";
+import PhoneAuth from "./components/auth/PhoneAuth";
+import AddProfileData from "./components/profile/AddProfileData";
 const App = () => {
   return (
     <AuthProvider>
@@ -53,6 +56,14 @@ const App = () => {
                 </ProtectedRoute>
               }
             />
+            <Route
+              path="add-profile"
+              element={
+                <ProtectedRoute>
+                  <AddProfileData />
+                </ProtectedRoute>
+              }
+            />
           </Route>
           <Route
             path="/login"
@@ -67,6 +78,22 @@ const App = () => {
             element={
               <PublicRoute>
                 <Register />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/reset-password"
+            element={
+              <PublicRoute>
+                <ResetPassword />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/phone-auth"
+            element={
+              <PublicRoute>
+                <PhoneAuth />
               </PublicRoute>
             }
           />
