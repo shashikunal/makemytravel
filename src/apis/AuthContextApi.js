@@ -19,7 +19,6 @@ const AuthProvider = ({ children }) => {
         (userInfo.emailVerified === true && userInfo.isAnonymous === false) ||
         userInfo.getIdTokenResult
       ) {
-        console.log(userInfo);
         isSetLoading(true);
         setAuthUser(userInfo);
         let token = userInfo.accessToken;

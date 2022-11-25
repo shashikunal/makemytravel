@@ -16,6 +16,9 @@ import ProfileDefault from "./components/profile/ProfileDefault";
 import ResetPassword from "./components/auth/ResetPassword";
 import PhoneAuth from "./components/auth/PhoneAuth";
 import AddProfileData from "./components/profile/AddProfileData";
+import AddHotel from "./components/hotelsandCity/AddHotel";
+import Admin from "./components/admin/Admin";
+import AdminRoute from "./routes/AdminRoute";
 const App = () => {
   return (
     <AuthProvider>
@@ -24,14 +27,25 @@ const App = () => {
 
         <ToastContainer theme="dark" />
         <Routes>
+          <Route path="/" element={<Home />} />
+
           <Route
-            path="/"
+            path="/admin"
             element={
-              <ProtectedRoute>
-                <Home />
-              </ProtectedRoute>
+              <AdminRoute>
+                <Admin />
+              </AdminRoute>
             }
-          />
+          >
+            <Route
+              path="add-hotel"
+              element={
+                <ProtectedRoute>
+                  <AddHotel />
+                </ProtectedRoute>
+              }
+            />
+          </Route>
           <Route
             path="/profile"
             element={

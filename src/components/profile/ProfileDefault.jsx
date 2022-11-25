@@ -4,18 +4,17 @@ import Spinner from "../../pages/Spinner";
 import Styles from "./_profile.module.css";
 import { Link } from "react-router-dom";
 import { FaCamera } from "react-icons/fa";
-import { collection, doc, getDocs } from "@firebase/firestore";
+import { doc, onSnapshot } from "@firebase/firestore";
 import { db } from "../../apis/firebase";
 
 const ProfileDefault = () => {
   let { authUser } = useContext(AuthContext);
+  let { uid } = authUser === null ? "" : authUser;
   let [profile, setProfile] = useState("");
-  let userCollectionRef = collection(db, "users");
+
   let fetchData = async () => {
-    let data = await getDocs(userCollectionRef);
-    data.docs.map(user => {
-      // console.log(user.data());
-      return setProfile(user.data());
+    onSnapshot(doc(db, "users", uid), doc => {
+      setProfile(doc.data());
     });
   };
   useEffect(() => {
@@ -32,7 +31,10 @@ const ProfileDefault = () => {
             <aside className={Styles.asideIcon}>
               <Link to="/profile/upload-profile-photo">
                 <figure>
-                  <img src={profile.photoURL} alt={profile.displayName} />
+                  <img
+                    src={authUser.photoURL || profile.photoURL}
+                    alt={profile.displayName || authUser.displayName}
+                  />
                 </figure>
                 <main>
                   <span className={Styles.cameraIcon}>
@@ -47,8 +49,12 @@ const ProfileDefault = () => {
             </footer>
             <aside className={Styles.profileUser}>
               <Fragment>
-                <p>{profile.gender}</p>
+                <p>
+                  <p>Firstname : {profile.firstname} </p>
+                  <p>Lastname : {profile.lastname}</p>
+                </p>
                 <p>{profile.city}</p>
+                <p>{profile.gender}</p>
                 <p>{profile.address}</p>
               </Fragment>
             </aside>

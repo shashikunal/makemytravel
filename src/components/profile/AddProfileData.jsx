@@ -2,12 +2,13 @@ import React, { useState, useContext } from "react";
 import Styles from "./_profile.module.css";
 import { toast } from "react-toastify";
 import { db, auth } from "../../apis/firebase";
-import { addDoc, collection, doc } from "@firebase/firestore";
-import { updateProfile } from "@firebase/auth";
+import { doc, setDoc } from "@firebase/firestore";
 import { AuthContext } from "../../apis/AuthContextApi";
 
 const AddProfileData = () => {
   let { authUser } = useContext(AuthContext);
+  let { uid } = authUser === null ? "" : authUser;
+
   let [state, setState] = useState({
     firstname: "",
     lastname: "",
@@ -33,9 +34,10 @@ const AddProfileData = () => {
         city,
         address,
       };
-      let userCollectionRef = collection(db, "users");
-      let { displayName, photoURL, uid, email } = authUser;
-      await addDoc(userCollectionRef, {
+      let { displayName, photoURL, email } = authUser;
+      let userCollectionRef = doc(db, "users", uid);
+
+      await setDoc(userCollectionRef, {
         uid,
         displayName,
         photoURL,

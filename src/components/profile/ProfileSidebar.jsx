@@ -21,7 +21,7 @@ const ProfileSidebar = () => {
           </li>
           <li>
             <NavLink to="/profile/add-profile" activeClassName="active">
-              add profile
+              update profile
             </NavLink>
           </li>
         </ul>
