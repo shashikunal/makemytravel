@@ -19,6 +19,10 @@ import AddProfileData from "./components/profile/AddProfileData";
 import AddHotel from "./components/hotelsandCity/AddHotel";
 import Admin from "./components/admin/Admin";
 import AdminRoute from "./routes/AdminRoute";
+import ListOfUsers from "./components/admin/ListOfUsers";
+import Users from "./components/admin/Users";
+import AdminPanelContainer from "./components/admin/AdminPanelContainer";
+import UserDetails from "./components/admin/UserDetails";
 const App = () => {
   return (
     <AuthProvider>
@@ -38,14 +42,31 @@ const App = () => {
             }
           >
             <Route
-              path="add-hotel"
+              index
               element={
-                <ProtectedRoute>
-                  <AddHotel />
-                </ProtectedRoute>
+                <AdminRoute>
+                  <AdminPanelContainer />
+                </AdminRoute>
+              }
+            />
+            <Route
+              path="users"
+              element={
+                <AdminRoute>
+                  <Users />
+                </AdminRoute>
+              }
+            />
+            <Route
+              path=":id"
+              element={
+                <AdminRoute>
+                  <UserDetails />
+                </AdminRoute>
               }
             />
           </Route>
+
           <Route
             path="/profile"
             element={

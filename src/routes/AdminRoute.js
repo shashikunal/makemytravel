@@ -17,7 +17,6 @@ let AdminRoute = ({ children }) => {
       let adminRef = doc(db, "users", uid);
       let adminUser = await getDoc(adminRef);
       let { role } = adminUser.data();
-      console.log(role);
       setRole(role);
     };
     fetchData();
