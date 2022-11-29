@@ -4,6 +4,7 @@ import { AuthContext } from "../apis/AuthContextApi";
 import { db } from "../apis/firebase";
 import { getDoc, doc } from "@firebase/firestore";
 import { toast } from "react-toastify";
+import Spinner from "../pages/Spinner";
 
 let AdminRoute = ({ children }) => {
   let [role, setRole] = useState(null);
@@ -24,8 +25,11 @@ let AdminRoute = ({ children }) => {
     if (role !== undefined || (role !== null && role === "admin")) {
       return <>{children}</>;
     } else {
-      toast.warn("You are not Authorized");
-      return <Navigate to="/profile" />;
+      if (role === undefined || role === null) {
+        <Spinner />;
+        toast.warn("You are not Authorized");
+        return <Navigate to="/profile" />;
+      }
     }
   } else {
     return <Navigate to="/login" />;

@@ -20,7 +20,8 @@
   flex-basis: 80%;
 }
 
-.adminSidebar nav a {
+.adminSidebar nav a,
+.adminSidebar main a {
   justify-content: start;
   text-decoration: none;
   display: flex;
@@ -38,7 +39,8 @@
   top: 2px;
 }
 
-.adminSidebar nav a:hover {
+.adminSidebar nav a:hover,
+.adminSidebar main a:hover {
   border-radius: 5px;
   background-color: #0821b1;
   color: #fff;
@@ -199,12 +201,33 @@
   color: #0c25b0;
 }
 
-ul {
+.userDescription ul {
   list-style: none;
 }
 
-ul li {
+.userDescription ul li {
   padding: 10px 0;
   font-size: 15px;
   font-weight: 100;
+}
+
+.adminMain h2 {
+  padding: 10px 0;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 1.4px;
+  color: #607d8b;
+  border-bottom: 1px solid #607d8b1f;
+  margin: 10px 0 20px;
+}
+
+.adminMain form {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.adminMain form div {
+  flex-basis: 24%;
 }

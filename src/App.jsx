@@ -65,6 +65,15 @@ const App = () => {
                 </AdminRoute>
               }
             />
+            {/* //hotel Routes */}
+            <Route
+              path="add-hotel"
+              element={
+                <AdminRoute>
+                  <AddHotel />
+                </AdminRoute>
+              }
+            />
           </Route>
 
           <Route

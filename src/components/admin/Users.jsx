@@ -1,14 +1,13 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { db } from "../../apis/firebase";
 import { getDocs, collection } from "@firebase/firestore";
 import { toast } from "react-toastify";
 import Styles from "./_admin.module.css";
-import { Link } from "react-router-dom";
 import Spinner from "./../../pages/Spinner";
-import { map } from "@firebase/util";
+
 import User from "./User";
 const Users = () => {
-  let [users, setUsers] = useState([]);
+  let [users, setUsers] = useState(null);
 
   useEffect(() => {
     try {
@@ -18,7 +17,8 @@ const Users = () => {
         let payload = userData.docs.map(user => {
           return { ...user.data(), id: user.id };
         });
-        setUsers(payload);
+        let filteredUser = payload.filter(user => user.role !== "admin");
+        setUsers(filteredUser);
       };
       fetchUsers();
     } catch (error) {
@@ -28,7 +28,7 @@ const Users = () => {
 
   return (
     <div className={Styles.cardBody}>
-      {users.map.length === 0 ? (
+      {users === null ? (
         <Spinner />
       ) : (
         users?.map(user => {

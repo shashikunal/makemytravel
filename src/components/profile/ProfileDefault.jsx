@@ -1,4 +1,10 @@
-import React, { Fragment, useContext, useEffect, useState } from "react";
+import React, {
+  Fragment,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { AuthContext } from "../../apis/AuthContextApi";
 import Spinner from "../../pages/Spinner";
 import Styles from "./_profile.module.css";
@@ -9,20 +15,21 @@ import { db } from "../../apis/firebase";
 
 const ProfileDefault = () => {
   let { authUser } = useContext(AuthContext);
+  console.log(authUser);
   let { uid } = authUser === null ? "" : authUser;
   let [profile, setProfile] = useState("");
 
-  let fetchData = async () => {
+  let fetchData = useCallback(async () => {
     onSnapshot(doc(db, "users", uid), doc => {
       setProfile(doc.data());
     });
-  };
+  }, [uid]);
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [fetchData]);
   return (
     <div className={Styles.mainProfileBlock}>
-      {authUser === null ? (
+      {profile === "" ? (
         <Spinner />
       ) : (
         <Fragment>
